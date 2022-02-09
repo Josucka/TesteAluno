@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using TesteAluno.Data;
+using TesteAluno.Services;
 
 namespace TesteAluno
 {
@@ -29,6 +30,8 @@ namespace TesteAluno
                 options.UseSqlServer(Configuration.GetConnectionString("BancoTestContext")));
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BancoTestContext>();
+
+            services.AddTransient<IAlunoService, AlunoServices>();
 
             services.AddSwaggerGen(c =>
             {
@@ -54,13 +57,17 @@ namespace TesteAluno
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(a => a.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

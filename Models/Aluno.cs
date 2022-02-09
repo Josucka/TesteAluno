@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TesteAluno.Models
 {
@@ -7,14 +8,17 @@ namespace TesteAluno.Models
         public int Id { get; set; }
 
         public string Nome { get; set; }
-
-        public int Nascimento { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime Nascimento { get; set; }
 
         public string Endereco { get; set; }
 
-        public DateTime? DataCriacao { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DataCriacao { get; set; }
         
-        public DateTime? DataAtualizacao { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DataAtualizacao { get; set; }
     }
 }
  
