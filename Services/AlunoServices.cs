@@ -60,6 +60,7 @@ namespace TesteAluno.Services
                 }
                 else
                 {
+                    novoAluno.IsSuccess = false;
                     novoAluno.Message = "Successfully";
                 }
                 _context.SaveChanges();
