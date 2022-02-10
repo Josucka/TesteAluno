@@ -22,9 +22,9 @@
 
 ## Rotas
 
-##### GET/Aluno 
-##### GET/Aluno/{id}
-##### POST/Aluno
-##### PUT/Aluno/{id}
-##### DELETE/Aluno/{id}
+##### GET/api/Aluno 
+##### GET/api/Aluno/alunoById/id
+##### POST/api/createAluno
+##### PUT/api/Aluno/updateAluno
+##### DELETE/api/Aluno/deleteAluno
 
