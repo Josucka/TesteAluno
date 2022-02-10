@@ -1,4 +1,4 @@
-# API desenvolvida para Teste *Aluno
+# API desenvolvida para Teste *Aluno*
 
 ## Para utilizar projeto devemos:
 
