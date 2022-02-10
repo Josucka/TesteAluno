@@ -2,4 +2,4 @@
 
 ## Para utilizar projeto devemos:
 
-### * Clonar repositório 
+### (Clonar repositório)[https://github.com/Josucka/TesteAluno.git] 
