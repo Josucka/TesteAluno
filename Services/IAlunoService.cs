@@ -5,14 +5,14 @@ namespace TesteAluno.Services
 {
     public interface IAlunoService
     {
-        List<Aluno> All();
+        List<Aluno> GetList();
 
         Aluno Get(int? id);
 
-        bool Create(Aluno aluno);
+        AlunoModel Create(Aluno aluno);
 
-        bool Update(Aluno aluno);
+        AlunoModel Update(Aluno aluno);
 
-        bool Delete(int? id);
+        AlunoModel Delete(int? id);
     }
 }

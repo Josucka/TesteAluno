@@ -14,63 +14,120 @@ namespace TesteAluno.Services
             _context = context;
         }
 
-        public List<Aluno> All()
+        public List<Aluno> GetList()
         {
-            return _context.Aluno.ToList();            
+            List<Aluno> alunoList;
+            try
+            {
+                alunoList = _context.Set<Aluno>().ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return alunoList;            
         }
        
         public Aluno Get(int? id)
         {
-            return _context.Aluno.FirstOrDefault(A => A.Id == id);
-        }
-
-        public bool Create(Aluno aluno)
-        {
+            Aluno aluno;
             try
             {
-                aluno.DataCriacao = DateTime.Now;
-                _context.Add(aluno);
-                _context.SaveChanges();
-                return true;
+                aluno = _context.Find<Aluno>(id);
             }
-            catch
+            catch (Exception)
             {
-                return false;
+                throw;
             }
+            return aluno;
         }
 
-        public bool Delete(int? id)
+        public AlunoModel Create(Aluno aluno)
         {
-            if (!_context.Aluno.Any(A => A.Id == id))
-                throw new Exception("Id do aluno nao existe");
+            AlunoModel novoAluno = new AlunoModel();
             try
             {
-                _context.Remove(this.Get(id));
+                Aluno _aluno = Get(aluno.Id);
+                if(_aluno != null)
+                {
+                    _aluno.Nome = aluno.Nome;
+                    _aluno.Nascimento = aluno.Nascimento;
+                    _aluno.Endereco = aluno.Endereco;
+                    _aluno.DataCriacao = DateTime.Now;
+                    _context.Add<Aluno>(_aluno);
+                    _context.SaveChanges();
+                    novoAluno.Message = "Criado com Success";
+                }
+                else
+                {
+                    novoAluno.Message = "Successfully";
+                }
                 _context.SaveChanges();
-                return true;
+                novoAluno.IsSuccess = true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                novoAluno.IsSuccess = false;
+                novoAluno.Message = "Error : " + ex.Message;
             }
+            return novoAluno;
         }
 
-
-        public bool Update(Aluno aluno)
+        public AlunoModel Delete(int? id)
         {
+            AlunoModel excluirAluno = new AlunoModel();
             try
             {
-                if (!_context.Aluno.Any(A => A.Id == aluno.Id))
-                    throw new Exception("Id invalido!");
-                aluno.DataAtualizacao = DateTime.Now;
-                _context.Update(aluno);
-                _context.SaveChanges();
-                return true;
+                Aluno _aluno = Get(id);
+                if (_aluno != null)
+                {
+                    _context.Remove<Aluno>(_aluno);
+                    _context.SaveChanges();
+                    excluirAluno.IsSuccess = true;
+                    excluirAluno.Message = "Excluido com Success";
+                }
+                else
+                {
+                    excluirAluno.IsSuccess = false;
+                    excluirAluno.Message = "Erro ao excluir item";
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                excluirAluno.IsSuccess = false;
+                excluirAluno.Message = "Error : " + ex.Message;
             }
+            return excluirAluno;
+        }
+
+        public AlunoModel Update(Aluno aluno)
+        {
+            AlunoModel novoAluno = new AlunoModel();
+            try
+            {
+                Aluno _aluno = Get(aluno.Id);
+                if (_aluno != null)
+                {
+                    _aluno.Nome = aluno.Nome;
+                    _aluno.Nascimento = aluno.Nascimento;
+                    _aluno.Endereco = aluno.Endereco;
+                    _aluno.DataAtualizacao = DateTime.Now;
+                    _context.Update<Aluno>(_aluno);
+                    novoAluno.Message = "Atualizado com Success";
+                }
+                else
+                {
+                    novoAluno.Message = "Successfully";
+                }
+                _context.SaveChanges();
+                novoAluno.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                novoAluno.IsSuccess = false;
+                novoAluno.Message = "Error : " + ex.Message;
+            }
+            return novoAluno;
         }
     }
 }

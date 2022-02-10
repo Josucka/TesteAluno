@@ -6,7 +6,7 @@ namespace TesteAluno.Data
 {
     public class BancoTestContext : IdentityDbContext
     {
-        public BancoTestContext(DbContextOptions<BancoTestContext> options) : base(options) { }
+        public BancoTestContext(DbContextOptions<BancoTestContext> options) : base (options) { }
 
         public DbSet<Aluno> Aluno { get; set; }
     }

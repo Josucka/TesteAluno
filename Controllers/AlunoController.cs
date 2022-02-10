@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net.Mime;
 using TesteAluno.Models;
 using TesteAluno.Services;
@@ -8,14 +9,14 @@ namespace TesteAluno.Controllers
 {
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("/api/[controller]")]
-    public class AlunoController : ApiBaseController
+    public class AlunoController : ControllerBase
     {
-        IAlunoService _service;
+        IAlunoService _alunoService;
         public AlunoController(IAlunoService service)
         {
-            _service = service;
+            _alunoService = service;
         }
 
         /// <summary>
@@ -24,7 +25,20 @@ namespace TesteAluno.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public IActionResult Index() => ApiOk(_service.All());
+        public IActionResult ListAluno()
+        {
+            try
+            {
+                var aluno = _alunoService.GetList();
+                if (aluno == null)
+                    return NotFound();
+                return Ok(aluno);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
 
         /// <summary>
         /// Retorna o item especifico
@@ -33,15 +47,23 @@ namespace TesteAluno.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("{id}")]
         [HttpGet]
-        public IActionResult Index(int? id)
+        [Route("[action]/id")]
+        public IActionResult AlunoById(int? id)
         {
-            Aluno alunoExistente = _service.Get(id);
-
-            return alunoExistente == null ? ApiNotFound("Id não encontrado") : ApiOk(alunoExistente);
+            try
+            {
+                var aluno = _alunoService.Get(id);
+                if (aluno == null)
+                    return NotFound();
+                return Ok(aluno);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
-        
+
         /// <summary>
         /// Chamada pra criar um novo item
         /// </summary>
@@ -50,9 +72,18 @@ namespace TesteAluno.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPost]
-        public IActionResult Create([FromBody] Aluno aluno)
+        [Route("[action]")]
+        public IActionResult CreateAluno([FromBody] Aluno aluno)
         {
-            return _service.Create(aluno) ? ApiOk(aluno, "Item criado com sucesso") : ApiNotFound("Falha ao criar item");
+            try
+            {
+                var novoAluno = _alunoService.Create(aluno);
+                return Ok(novoAluno);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -63,10 +94,18 @@ namespace TesteAluno.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut]
-        [Route("{id}")]
-        public IActionResult Update([FromBody] Aluno aluno)
+        [Route("[action]")]
+        public IActionResult UpdateAluno([FromBody] Aluno aluno)
         {
-            return _service.Update(aluno) ? ApiOk("item atualizado com sucesso") : ApiNotFound("Erro ao atualizar item");
+            try
+            {
+                var atualizarAluno = _alunoService.Update(aluno);
+                return Ok(atualizarAluno);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -76,8 +115,19 @@ namespace TesteAluno.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("{id}")]
         [HttpDelete]
-        public IActionResult Delete(int? id) => _service.Delete(id) ? ApiOk("Apagado com sucesso") : ApiNotFound("Erro ao tentar apagar item");
+        [Route("[action]")]
+        public IActionResult DeleteAluno(int? id)
+        {
+            try
+            {
+                var deleteAluno = _alunoService.Delete(id);
+                return Ok(deleteAluno);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        } 
     }
 }
