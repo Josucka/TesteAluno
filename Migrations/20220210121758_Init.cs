@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TesteAluno.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,10 +14,10 @@ namespace TesteAluno.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nascimento = table.Column<int>(type: "int", nullable: false),
+                    Nascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DataAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DataCriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

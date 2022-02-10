@@ -15,15 +15,20 @@ namespace TesteAluno.Services
         }
 
         public List<Aluno> All()
-        {//erro
-            return _context.Aluno.ToList();
+        {
+            return _context.Aluno.ToList();            
+        }
+       
+        public Aluno Get(int? id)
+        {
+            return _context.Aluno.FirstOrDefault(A => A.Id == id);
         }
 
         public bool Create(Aluno aluno)
         {
             try
             {
-                //aluno.DataCriacao = DateTime.Now;
+                aluno.DataCriacao = DateTime.Now;
                 _context.Add(aluno);
                 _context.SaveChanges();
                 return true;
@@ -34,7 +39,7 @@ namespace TesteAluno.Services
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(int? id)
         {
             if (!_context.Aluno.Any(A => A.Id == id))
                 throw new Exception("Id do aluno nao existe");
@@ -50,10 +55,6 @@ namespace TesteAluno.Services
             }
         }
 
-        public Aluno Get(int id)
-        {
-            return _context.Aluno.FirstOrDefault(A => A.Id == id);
-        }
 
         public bool Update(Aluno aluno)
         {
@@ -61,7 +62,7 @@ namespace TesteAluno.Services
             {
                 if (!_context.Aluno.Any(A => A.Id == aluno.Id))
                     throw new Exception("Id invalido!");
-                //aluno.DataAtualizacao = DateTime.Now;
+                aluno.DataAtualizacao = DateTime.Now;
                 _context.Update(aluno);
                 _context.SaveChanges();
                 return true;

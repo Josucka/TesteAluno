@@ -10,8 +10,8 @@ using TesteAluno.Data;
 namespace TesteAluno.Migrations
 {
     [DbContext(typeof(BancoTestContext))]
-    [Migration("20220209140117_firstMigration")]
-    partial class firstMigration
+    [Migration("20220210121758_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,17 +228,17 @@ namespace TesteAluno.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DataAtualizacao")
+                    b.Property<DateTime>("DataAtualizacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataCriacao")
+                    b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nascimento")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Nascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");

@@ -7,12 +7,12 @@ namespace TesteAluno.Services
     {
         List<Aluno> All();
 
-        Aluno Get(int id);
+        Aluno Get(int? id);
 
         bool Create(Aluno aluno);
 
         bool Update(Aluno aluno);
 
-        bool Delete(int id);
+        bool Delete(int? id);
     }
 }

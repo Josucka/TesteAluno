@@ -226,17 +226,17 @@ namespace TesteAluno.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DataAtualizacao")
+                    b.Property<DateTime>("DataAtualizacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataCriacao")
+                    b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nascimento")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Nascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");

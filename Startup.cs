@@ -31,7 +31,7 @@ namespace TesteAluno
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<BancoTestContext>();
 
-            services.AddTransient<IAlunoService, AlunoServices>();
+            services.AddScoped<IAlunoService, AlunoServices>();
 
             services.AddSwaggerGen(c =>
             {

@@ -9,7 +9,7 @@ namespace TesteAluno.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     public class AlunoController : ApiBaseController
     {
         IAlunoService _service;
@@ -35,7 +35,7 @@ namespace TesteAluno.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [Route("{id}")]
         [HttpGet]
-        public IActionResult Index(int id)
+        public IActionResult Index(int? id)
         {
             Aluno alunoExistente = _service.Get(id);
 
@@ -78,6 +78,6 @@ namespace TesteAluno.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [Route("{id}")]
         [HttpDelete]
-        public IActionResult Delete(int id) => _service.Delete(id) ? ApiOk("Apagado com sucesso") : ApiNotFound("Erro ao tentar apagar item");
+        public IActionResult Delete(int? id) => _service.Delete(id) ? ApiOk("Apagado com sucesso") : ApiNotFound("Erro ao tentar apagar item");
     }
 }
