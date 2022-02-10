@@ -22,7 +22,7 @@
 
 ## Rotas
 
->> GET/Aluno
+>> GET/Aluno |
 >> GET/Aluno/{id}
 >> POST/Aluno
 >> PUT/Aluno/{id}
