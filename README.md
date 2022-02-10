@@ -1,4 +1,4 @@
-# TesteAluno
+# API desenvolvida para Teste *Aluno
 
 ## Para utilizar projeto devemos:
 
