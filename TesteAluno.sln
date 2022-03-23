@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteAluno", "TesteAluno.csproj", "{63FF9810-0A87-4568-928B-F59AD6FC6733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteAluno", "TesteAluno.csproj", "{63FF9810-0A87-4568-928B-F59AD6FC6733}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{80F63C6F-97D1-46CE-B0BF-E6D0116AC247}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - GraphQL", "2 - GraphQL", "{741FE2A1-F516-4FCD-8A80-09D0589E6397}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL", "..\GraphQL\GraphQL.csproj", "{C3C7FC09-112D-430A-8279-80E05125A808}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{63FF9810-0A87-4568-928B-F59AD6FC6733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63FF9810-0A87-4568-928B-F59AD6FC6733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63FF9810-0A87-4568-928B-F59AD6FC6733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C7FC09-112D-430A-8279-80E05125A808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C7FC09-112D-430A-8279-80E05125A808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C7FC09-112D-430A-8279-80E05125A808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C7FC09-112D-430A-8279-80E05125A808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63FF9810-0A87-4568-928B-F59AD6FC6733} = {80F63C6F-97D1-46CE-B0BF-E6D0116AC247}
+		{C3C7FC09-112D-430A-8279-80E05125A808} = {741FE2A1-F516-4FCD-8A80-09D0589E6397}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8E3C1205-0B25-42A7-B627-1B3062555116}
